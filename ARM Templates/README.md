@@ -1,2 +1,2 @@
-# Azure
-Assortment of ARM Templates, Azure CLI and PowerShell resources for Azure
+# ARM Templates
+Assortment of ARM templates
