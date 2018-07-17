@@ -3,31 +3,31 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "adminUsername": {
-      "value": "codify"
+      "value": ""
     },
     "adminPassword": {
-      "value": "Passw0rd1234!"
+      "value": ""
     },
     "NetworkName": {
-      "value": "PRD-CoreNetwork"
+      "value": ""
     },
     "AVSETName": {
-      "value": "PRD-ADFS"
+      "value": ""
     },
     "VMName": {
-      "value": "PRD-ADFS-01"
+      "value": ""
     },
     "vmSize": {
-      "value": "Standard_ds1_V2"
+      "value": ""
     },
     "subnet": {
-      "value": "ADFS"
+      "value": ""
     },
     "virtualNetworkResourceGroup": {
-      "value": "PRD-CoreNetwork"
+      "value": ""
     },
     "IPAddress": {
-      "value": "10.200.0.70"
+      "value": ""
     }
   }
 }

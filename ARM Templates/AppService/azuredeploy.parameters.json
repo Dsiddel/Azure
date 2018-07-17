@@ -3,34 +3,34 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "vnetName": {
-            "value": "PRD-CoreNetwork"
+            "value": ""
         },
         "location": {
-            "value": "Australia East"
+            "value": ""
         },
         "locationId": {
-            "value": "australiaeast"
+            "value": ""
         },
         "subnetName": {
-            "value": "ASE"
+            "value": ""
         },
       "vnetId": {
-        "value": "/subscriptions/29be1ffe-5a99-4eff-9135-2fe8ae6985de/resourceGroups/PRD-AE-CoreNetwork/providers/Microsoft.Network/virtualNetworks/PRD-CoreNetwork"
+        "value": ""
       },
         "VNetResourceGroupName": {
-            "value": "PRD-AE-CoreNetwork"
+            "value": ""
         },
         "subnetAddress": {
-            "value": "10.200.4.0/24"
+            "value": ""
         },
         "name": {
-            "value": "MHG-PRD-AppServiceEnvironment"
+            "value": ""
         },
         "kind": {
-            "value": "ASEV2"
+            "value": ""
         },
       "subscriptionId": {
-        "value": "29be1ffe-5a99-4eff-9135-2fe8ae6985de"
+        "value": ""
       }
     }
 }

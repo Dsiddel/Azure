@@ -3,28 +3,28 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "ucq-ase-paloalto-prd-01Name": {
-      "value": "ucq-ase-paloalto-prd-02"
+      "value": ""
     },
     "ucq-ase-paloalto-prd-01AdminUserName": {
-      "value": "codify"
+      "value": ""
     },
     "ucq-ase-paloalto-prdName": {
-      "value": "ucq-ae-paloalto-prd"
+      "value": ""
     },
     "ucq-ase-paloalto-prd-01AdminPassword": {
-      "value": "Passw0rd1234!"
+      "value": ""
     },
     "ucq-ase-paloalto-prd-01Name": {
-      "value": "ucq-ase-paloalto-prd-02"
+      "value": ""
     },
     "ucq-ase-paloalto-prd-01AdminUserName": {
-      "value": "codify"
+      "value": ""
     },
     "ucq-ase-paloalto-prd-01AdminPassword": {
-      "value": "Passw0rd1234!"
+      "value": ""
     },
     "ucq-ase-paloalto-prdName": {
-      "value": "ucq-ase-paloalto-prd"
+      "value": ""
     }
   }
 }
