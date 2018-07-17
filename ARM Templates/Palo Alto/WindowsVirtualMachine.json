@@ -1,0 +1,201 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ucq-ase-paloalto-prd-01Name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ucq-ase-paloalto-prd-01AdminUserName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ucq-ase-paloalto-prd-01AdminPassword": {
+      "type": "securestring"
+    },
+    "skuname": {
+      "type": "string",
+      "defaultValue": "bundle2",
+      "allowedValues": [
+        "bundle2",
+        "2012-Datacenter",
+        "2012-R2-Datacenter",
+        "Windows-Server-Technical-Preview"
+      ]
+    },
+    "virtualNetworkName": {
+      "type": "string",
+      "defaultValue": "ucq-ase-corenetwork-prd"
+    },
+    "virtualNetworkResourceGroup": {
+      "type": "string",
+      "defaultValue": "ucq-ase-corenetwork-prd"
+    },
+    "ucq-ase-paloalto-prdName": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "variables": {
+    "location": "Australia South East",
+    "availabilitysetname": "ucq-ase-paloalto-prd",
+    "ucq-ase-paloalto-prd-01ImagePublisher": "paloaltonetworks",
+    "ucq-ase-paloalto-prd-01ImageOffer": "vmseries1",
+    "ucq-ase-paloalto-prd-01OSDiskName": "ucq-ase-paloalto-prd-01OSDisk",
+    "ucq-ase-paloalto-prd-01VmSize": "Standard_D8S_v3",
+    "ucq-ase-paloalto-prd-01VnetID": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
+    "ucq-ase-paloalto-prd-mgmtSubnetRef": "[concat(variables('ucq-ase-paloalto-prd-01VnetID'), '/subnets/', 'DMZ-Internal')]",
+    "ucq-ase-paloalto-prd-dmzinternalSubnetRef": "[concat(variables('ucq-ase-paloalto-prd-01VnetID'), '/subnets/', 'DMZ-Internal')]",
+    "ucq-ase-paloalto-prd-dmzexternalSubnetRef": "[concat(variables('ucq-ase-paloalto-prd-01VnetID'), '/subnets/', 'DMZ-Internet')]",
+    "ucq-ase-paloalto-prd-01StorageAccountContainerName": "vhds",
+    "ucq-ase-paloalto-prd-01NicName": "[concat(parameters('ucq-ase-paloalto-prd-01Name'), '-Nic-01')]",
+    "ucq-ase-paloalto-prd-02NicName": "panic2",
+    "ucq-ase-paloalto-prd-03NicName": "panic3"
+
+  },
+  "resources": [
+    {
+      "name": "[variables('ucq-ase-paloalto-prd-01NicName')]",
+      "type": "Microsoft.Network/networkInterfaces",
+      "location": "australiasoutheast",
+      "apiVersion": "2016-03-30",
+      "dependsOn": [],
+      "tags": {
+        "displayName": "ucq-ase-paloalto-prd-01Nic"
+      },
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[variables('ucq-ase-paloalto-prd-mgmtSubnetRef')]"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "[variables('ucq-ase-paloalto-prd-02NicName')]",
+      "type": "Microsoft.Network/networkInterfaces",
+      "location": "australiasoutheast",
+      "apiVersion": "2016-03-30",
+      "dependsOn": [],
+      "tags": {
+        "displayName": "ucq-ase-paloalto-prd-03Nic"
+      },
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[variables('ucq-ase-paloalto-prd-mgmtSubnetRef')]"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "[variables('ucq-ase-paloalto-prd-03NicName')]",
+      "type": "Microsoft.Network/networkInterfaces",
+      "location": "australiasoutheast",
+      "apiVersion": "2016-03-30",
+      "dependsOn": [],
+      "tags": {
+        "displayName": "ucq-ase-paloalto-prd-03Nic"
+      },
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "privateIPAllocationMethod": "Dynamic",
+              "subnet": {
+                "id": "[variables('ucq-ase-paloalto-prd-mgmtSubnetRef')]"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "[parameters('ucq-ase-paloalto-prd-01Name')]",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "[resourceGroup().location]",
+      "plan": {
+        "name": "bundle2",
+        "product": "vmseries1",
+        "publisher": "paloaltonetworks"
+      },
+      "apiVersion": "2017-03-30",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', variables('ucq-ase-paloalto-prd-01NicName'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces', variables('ucq-ase-paloalto-prd-02NicName'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces', variables('ucq-ase-paloalto-prd-03NicName'))]",
+        "[concat('Microsoft.Compute/availabilitySets/', parameters('ucq-ase-paloalto-prdName'))]"
+      ],
+      "tags": {
+        "displayName": "ucq-ase-paloalto-prd-01"
+      },
+      "properties": {
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets',parameters('ucq-ase-paloalto-prdName'))]"
+        },
+        "hardwareProfile": {
+          "vmSize": "[variables('ucq-ase-paloalto-prd-01VmSize')]"
+        },
+        "osProfile": {
+          "computerName": "[parameters('ucq-ase-paloalto-prd-01Name')]",
+          "adminUsername": "[parameters('ucq-ase-paloalto-prd-01AdminUsername')]",
+          "adminPassword": "[parameters('ucq-ase-paloalto-prd-01AdminPassword')]"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "[variables('ucq-ase-paloalto-prd-01ImagePublisher')]",
+            "offer": "[variables('ucq-ase-paloalto-prd-01ImageOffer')]",
+            "sku": "[parameters('skuname')]",
+            "version": "latest"
+          },
+          "osDisk": {
+            "name": "[parameters('ucq-ase-paloalto-prd-01Name')]",
+            "createOption": "FromImage",
+            "managedDisk": {
+              "storageAccountType": "Premium_LRS"
+            },
+            "caching": "ReadWrite"
+          }
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('ucq-ase-paloalto-prd-01NicName'))]"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "[parameters('ucq-ase-paloalto-prdName')]",
+      "type": "Microsoft.Compute/availabilitySets",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2017-03-30",
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "ucq-ase-paloalto-prd"
+      },
+      "properties": {
+        "platformUpdateDomainCount": 2,
+        "platformFaultDomainCount": 2
+      },
+      "sku": {
+        "name": "aligned"
+      }
+    }
+
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "codify"
+    },
+    "adminPassword": {
+      "value": "Passw0rd1234!"
+    },
+    "NetworkName": {
+      "value": "PRD-CoreNetwork"
+    },
+    "AVSETName": {
+      "value": "PRD-ADFS"
+    },
+    "VMName": {
+      "value": "PRD-ADFS-01"
+    },
+    "vmSize": {
+      "value": "Standard_ds1_V2"
+    },
+    "subnet": {
+      "value": "ADFS"
+    },
+    "virtualNetworkResourceGroup": {
+      "value": "PRD-CoreNetwork"
+    },
+    "IPAddress": {
+      "value": "10.200.0.70"
+    }
+  }
+}

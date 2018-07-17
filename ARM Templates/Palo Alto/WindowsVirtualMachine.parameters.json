@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "ucq-ase-paloalto-prd-01Name": {
+      "value": "ucq-ase-paloalto-prd-02"
+    },
+    "ucq-ase-paloalto-prd-01AdminUserName": {
+      "value": "codify"
+    },
+    "ucq-ase-paloalto-prdName": {
+      "value": "ucq-ae-paloalto-prd"
+    },
+    "ucq-ase-paloalto-prd-01AdminPassword": {
+      "value": "Passw0rd1234!"
+    },
+    "ucq-ase-paloalto-prd-01Name": {
+      "value": "ucq-ase-paloalto-prd-02"
+    },
+    "ucq-ase-paloalto-prd-01AdminUserName": {
+      "value": "codify"
+    },
+    "ucq-ase-paloalto-prd-01AdminPassword": {
+      "value": "Passw0rd1234!"
+    },
+    "ucq-ase-paloalto-prdName": {
+      "value": "ucq-ase-paloalto-prd"
+    }
+  }
+}

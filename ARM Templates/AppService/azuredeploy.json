@@ -1,0 +1,67 @@
+{
+    "parameters": {
+        "vnetName": {
+            "type": "string"
+        },
+        "vnetId": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "locationId": {
+            "type": "string"
+        },
+        "subnetName": {
+            "type": "string"
+        },
+        "VNetResourceGroupName": {
+            "type": "string"
+        },
+        "subnetAddress": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "kind": {
+            "type": "string"
+        },
+        "subscriptionId": {
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "name": "[parameters('name')]",
+            "type": "Microsoft.Web/hostingEnvironments",
+            "properties": {
+                "name": "[parameters('name')]",
+                "location": "[parameters('location')]",
+                "VirtualNetwork": {
+                    "Id": "[parameters('vnetId')]",
+                    "type": "Microsoft.Network/virtualNetworks",
+                    "Subnet": "[parameters('subnetName')]"
+                },
+                "dnsSuffix": "michaelhill.com.au",
+                "internalLoadBalancingMode": 3
+            },
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[concat('Microsoft.Network/virtualNetworks/', parameters('vnetName'), '/subnets/', parameters('subnetName'))]"
+            ],
+            "apiVersion": "2015-02-01",
+            "kind": "[parameters('kind')]"
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2016-06-01",
+            "name": "[concat(parameters('vnetName'), '/', parameters('subnetName'))]",
+            "properties": {
+                "addressPrefix": "[parameters('subnetAddress')]"
+            }
+        }
+    ],
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0"
+}

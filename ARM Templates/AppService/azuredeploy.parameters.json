@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnetName": {
+            "value": "PRD-CoreNetwork"
+        },
+        "location": {
+            "value": "Australia East"
+        },
+        "locationId": {
+            "value": "australiaeast"
+        },
+        "subnetName": {
+            "value": "ASE"
+        },
+      "vnetId": {
+        "value": "/subscriptions/29be1ffe-5a99-4eff-9135-2fe8ae6985de/resourceGroups/PRD-AE-CoreNetwork/providers/Microsoft.Network/virtualNetworks/PRD-CoreNetwork"
+      },
+        "VNetResourceGroupName": {
+            "value": "PRD-AE-CoreNetwork"
+        },
+        "subnetAddress": {
+            "value": "10.200.4.0/24"
+        },
+        "name": {
+            "value": "MHG-PRD-AppServiceEnvironment"
+        },
+        "kind": {
+            "value": "ASEV2"
+        },
+      "subscriptionId": {
+        "value": "29be1ffe-5a99-4eff-9135-2fe8ae6985de"
+      }
+    }
+}
