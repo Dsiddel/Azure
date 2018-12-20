@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceName": {
+      "value": "dsiddelaks1"
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "dnsPrefix": {
+      "value": "dsiddelaks1"
+    },
+    "agentCount": {
+      "value": 1
+    },
+    "agentVMSize": {
+      "value": "Standard_B2s"
+    },
+    "servicePrincipalClientId": {
+      "value": null
+    },
+    "servicePrincipalClientSecret": {
+      "value": null
+    },
+    "kubernetesVersion": {
+      "value": "1.11.4"
+    },
+    "workspaceName": {
+      "value": "Siddel-akstest"
+    },
+    "omsWorkspaceId": {
+      "value": "/subscriptions/d470d623-39f9-4dc6-865e-27fb601f140f/resourceGroups/DefaultResourceGroup-EUS/providers/Microsoft.OperationalInsights/workspaces/Siddel-akstest"
+    },
+    "workspaceRegion": {
+      "value": "eastus"
+    },
+    "enableHttpApplicationRouting": {
+      "value": true
+    },
+    "networkPlugin": {
+      "value": "kubenet"
+    },
+    "enableRBAC": {
+      "value": true
+    }
+  }
+}
